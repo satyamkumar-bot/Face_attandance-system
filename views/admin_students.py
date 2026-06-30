@@ -60,9 +60,7 @@ def show():
         "🧠 Register Face"
     ])
 
-    # -------------------------------------------------
-    # TAB 1 - VIEW / EDIT / REMOVE STUDENTS
-    # -------------------------------------------------
+
     with tab1:
         school_filter = st.selectbox("School", list(school_map.keys()), key="stu_filter_sch")
         school_id = school_map[school_filter]["id"]
@@ -153,9 +151,6 @@ def show():
         else:
             st.info("No students found.")
 
-    # -------------------------------------------------
-    # TAB 2 - ADD STUDENT
-    # -------------------------------------------------
     with tab2:
         school_sel2 = st.selectbox("School", list(school_map.keys()), key="add_stu_sch")
         school_id2 = school_map[school_sel2]["id"]
@@ -256,9 +251,7 @@ def show():
                         st.error(f"Error: {e}")
                         st.code(traceback.format_exc())
 
-    # -------------------------------------------------
-    # TAB 3 - REGISTER / UPDATE FACE
-    # -------------------------------------------------
+   
     with tab3:
         st.markdown("#### 🧠 Register / Update Face Encoding")
         st.info("You can register face using image upload or camera capture.")
