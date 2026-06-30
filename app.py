@@ -1,4 +1,6 @@
 import streamlit as st
+import sys
+import asyncio
 
 st.set_page_config(
     page_title="FaceAttend",
@@ -7,7 +9,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# ── Global CSS ────────────────────────────────────────────────────────────────
+
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -161,7 +163,7 @@ hr { border-color: #e0eeee !important; margin: 1rem 0 !important; }
 </style>
 """, unsafe_allow_html=True)
 
-# ── Session defaults ──────────────────────────────────────────────────────────
+
 defaults = {
     "teacher_logged_in": False,
     "teacher_data": None,
@@ -178,13 +180,13 @@ for k, v in defaults.items():
     if k not in st.session_state:
         st.session_state[k] = v
 
-# ── Determine if sidebar should be hidden ─────────────────────────────────────
+
 page = st.session_state["page"]
 no_sidebar_pages = {"home", "teacher_login", "admin_login"}
 if page in no_sidebar_pages:
     st.markdown('<style>[data-testid="stSidebar"]{display:none!important}[data-testid="collapsedControl"]{display:none!important}</style>', unsafe_allow_html=True)
 
-# ── Home ──────────────────────────────────────────────────────────────────────
+
 def show_home():
     st.markdown("""
     <div style="text-align:center;padding:48px 20px 28px">
@@ -196,7 +198,9 @@ def show_home():
     </div>
     """, unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns(3, gap="medium")
+    # Changed from 3 columns to 2 columns
+    col1, col2 = st.columns(2, gap="medium") 
+    
     with col1:
         st.markdown("""
         <div class="feature-card">
@@ -223,31 +227,7 @@ def show_home():
         if st.button("Admin Login →", key="btn_admin", width="stretch"):
             st.session_state["page"] = "admin_login"; st.rerun()
 
-    with col3:
-        st.markdown("""
-        <div class="feature-card">
-            <div style="font-size:44px;margin-bottom:12px">✨</div>
-            <h3 style="color:#01696f;margin:0 0 8px;font-size:1.1rem">Key Features</h3>
-            <ul style="color:#7a7974;font-size:13px;text-align:left;margin:0;padding-left:16px;line-height:2">
-                <li>Live face recognition</li>
-                <li>Eye-blink liveness check</li>
-                <li>Manual override</li>
-                <li>CSV / Excel / PDF export</li>
-                <li>Student promotion tools</li>
-                <li>Mobile-first design</li>
-            </ul>
-        </div>""", unsafe_allow_html=True)
 
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("""
-    <div style="text-align:center;padding:20px;background:#f0f9f9;border-radius:12px;margin-top:8px">
-        <p style="color:#5a7a7a;font-size:13px;margin:0">
-            🔒 Secure · 📱 Mobile-Friendly · 🧠 AI-Powered · ☁️ Cloud Database
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-
-# ── Router ────────────────────────────────────────────────────────────────────
 if page == "home":
     show_home()
 elif page == "teacher_login":
