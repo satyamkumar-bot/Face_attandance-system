@@ -23,20 +23,3 @@ The system is split into two main portals:
 * **Facial Recognition:** `face_recognition` (built on dlib's HOG model)
 * **Database:** Supabase (PostgreSQL)
 * **Reporting:** Pandas, OpenPyXL, FPDF
-
----
-
-## 💻 Local Setup & Installation
-
-If you want to run this on your own machine, follow these steps. 
-
-**1. Clone the repo and set up a virtual environment**
-```bash
-git clone [https://github.com/yourusername/Face-attendance_system.git](https://github.com/yourusername/Face-attendance_system.git)
-cd Face-attendance_system
-python -m venv venv
-
-# On Windows:
-venv\Scripts\activate
-# On Mac/Linux:
-source venv/bin/activate
