@@ -48,7 +48,7 @@ def show():
 
     st.markdown("---")
 
-    # Fetch attendance
+ 
     att_raw = db.table("attendance").select("*, students(id,name,roll_number)") \
         .eq("class_id", selected_class["id"]).gte("date", str(start_date)).lte("date", str(end_date)).execute()
     att_data = att_raw.data or []
@@ -56,7 +56,7 @@ def show():
     if not att_data:
         st.info("No attendance records for this class in the selected date range."); return
 
-    # Build DataFrame
+ 
     rows = []
     for r in att_data:
         rows.append({
