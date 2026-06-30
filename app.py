@@ -193,12 +193,12 @@ def show_home():
         <div style="font-size:72px;margin-bottom:8px">🎓</div>
         <h1 style="color:#01696f;font-size:clamp(1.8rem,5vw,2.6rem);margin:0 0 10px;font-weight:700">FaceAttend</h1>
         <p style="color:#5a7a7a;font-size:clamp(14px,2.5vw,18px);margin:0 auto;max-width:480px">
-            AI-powered school attendance using face recognition.<br>Works on any device — mobile, tablet, or laptop.
+            AI-powered school attendance using face recognition.
         </p>
     </div>
     """, unsafe_allow_html=True)
 
-    # Changed from 3 columns to 2 columns
+ 
     col1, col2 = st.columns(2, gap="medium") 
     
     with col1:
